@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MAXIQUEEN OS: Marketing Matrix Syndicate. Acceso exclusivo para la automatización comercial de alto rendimiento.">
+  <title>MAXIQUEEN OS | Elite Marketing Syndicate</title>
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/main.css">
+
+<style>
+    :root {
+      /* Paleta de Élite / Membresía Premium basada en Oro, Azul Real y Carmesí */
+      --elite-gold: #d4af37; /* Oro Cromo de alta fidelidad */
+      --elite-gold-glow: rgba(212, 175, 55, 0.3);
+      --elite-blue: #0f2b5c; /* Azul Marino Imperial / Obsidiana */
+      --elite-crimson: #ff0044; /* Carmesí de alerta y conversión táctica */
+      --elite-dark-bg: #04060a; /* Negro Azabache Premium */
+      --elite-card-bg: #0c101b; /* Terciopelo Oscuro */
+      
+      /* Sistema de Transición */
+      --nexus-neon: var(--elite-gold);
+      --nexus-glow: var(--elite-gold-glow);
+    }
+
+    body {
+      background-color: var(--elite-dark-bg) !important;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-image: linear-gradient(rgba(212, 175, 55, 0.01) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(212, 175, 55, 0.01) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Header de Alta Costura Digital */
+    .site-header {
+      background: rgba(4, 6, 10, 0.9) !important;
+      border-bottom: 2px solid var(--elite-gold) !important;
+      backdrop-filter: blur(20px) !important;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+    }
+    .brand span {
+      color: #ffffff !important;
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #fff 30%, var(--elite-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Hero Section: Sala de Control Privada */
+    .hero-section {
+      background: radial-gradient(circle at top, var(--elite-blue) 0%, var(--elite-dark-bg) 70%) !important;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      position: relative;
+    }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--elite-gold), transparent);
+    }
+    .hero-copy .eyebrow {
+      color: var(--elite-crimson) !important;
+      letter-spacing: 6px !important;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 12px;
+      border-left: 3px solid var(--elite-gold);
+      padding-left: 8px;
+    }
+    #hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+      font-weight: 900 !important;
+      text-shadow: 0 0 30px var(--elite-gold-glow) !important;
+      color: #ffffff !important;
+      letter-spacing: -1px;
+    }
+
+    /* Tarjetas de Módulos - Formato Membresía VIP */
+    .module-card {
+      background: linear-gradient(145deg, #0e1424 0%, var(--elite-card-bg) 100%) !important;
+      border: 1px solid rgba(212, 175, 55, 0.1) !important;
+      border-radius: 20px !important;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6) !important;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--elite-crimson), var(--elite-gold));
+      opacity: 0.7;
+    }
+    .module-card:hover {
+      transform: translateY(-10px) !important;
+      border-color: var(--elite-gold) !important;
+      box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15) !important;
+    }
+    .card-kicker {
+      background: rgba(212, 175, 55, 0.1) !important;
+      color: var(--elite-gold) !important;
+      padding: 6px 14px !important;
+      border: 1px solid rgba(212, 175, 55, 0.2) !important;
+      border-radius: 30px !important;
+      font-size: 10px !important;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Accesos Rápidos de Élite */
+    .access-grid a {
+      background: #090e1a !important;
+      border: 1px solid rgba(212, 175, 55, 0.15) !important;
+      border-radius: 12px !important;
+      color: #e2e8f0 !important;
+      font-weight: 500;
+    }
+    .access-grid a:hover {
+      background: linear-gradient(90deg, var(--elite-gold) 0%, #b89326 100%) !important;
+      color: #000000 !important;
+      font-weight: bold;
+      box-shadow: 0 0 25px var(--elite-gold-glow) !important;
+      border-color: #ffffff !important;
+    }
+
+    /* Botones de Conversión */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--elite-gold) 0%, #b89326 100%) !important;
+      color: #000000 !important;
+      font-weight: 800 !important;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none !important;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3) !important;
+    }
+    .btn-primary:hover {
+      background: #ffffff !important;
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4) !important;
+    }
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      color: #fff !important;
+    }
+    .btn-secondary:hover {
+      border-color: var(--elite-crimson) !important;
+      color: var(--elite-crimson) !important;
+    }
+
+    /* Consola Flotante del Omnipresent Chat - Estructura Flexbox Fija Antidesbordamiento */
+    .mq-chat {
+      position: fixed;
+      bottom: 0;
+      right: 20px;
+      width: 380px;
+      height: 650px; /* Altura total de la consola */
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      border: 2px solid var(--elite-gold) !important;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.9) !important;
+      border-radius: 24px 24px 0 0 !important;
+      background: var(--elite-dark-bg) !important;
+      z-index: 9999;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Manejo del estado minimizado sin romper el layout */
+    .mq-chat.minimized {
+      height: 48px !important;
+    }
+
+    .mq-chat-header {
+      background: #090e1a !important;
+      border-bottom: 2px solid var(--elite-gold) !important;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .chat-title span {
+      color: var(--elite-crimson) !important;
+    }
+
+    /* Panel de la Imagen/Avatar - REDUCIDO AL MÍNIMO PARA DAR ESPACIO AL CHAT */
+    .avatar-stream-box {
+      width: 100%;
+      height: 110px; /* Reducción drástica para que no robe espacio de lectura */
+      background: #020305;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      flex-shrink: 0; /* Bloquea el colapso del contenedor */
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* HUD de Telemetría/Texto Principal - Expandido y legible sin comerse la UI */
+    .avatar-overlay-ui {
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      right: 8px;
+      max-height: calc(100% - 12px);
+      overflow-y: auto; /* Scroll interno sutil si el texto base es muy largo */
+      color: #ffffff !important;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      line-height: 1.4;
+      z-index: 10 !important;
+      background: rgba(6, 10, 22, 0.92) !important; /* Fondo opaco de alta seguridad */
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.2) !important;
+      border-left: 3px solid var(--elite-crimson) !important;
+      backdrop-filter: blur(8px) !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Mini Scrollbar para el HUD de telemetría */
+    .avatar-overlay-ui::-webkit-scrollbar {
+      width: 3px;
+    }
+    .avatar-overlay-ui::-webkit-scrollbar-thumb {
+      background: var(--elite-gold);
+      border-radius: 4px;
+    }
+
+    /* Control de renderizado de la imagen de fondo */
+    .avatar-video, 
+    .avatar-stream-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Área del Chat - AHORA TIENE EL MÁXIMO ESPACIO DISPONIBLE Y NO SE MINIMIZA */
+    .mq-chat-body {
+      flex: 1; /* Absorbe dinámicamente todo el espacio que le quitamos a la imagen */
+      overflow-y: auto;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: rgba(4, 6, 10, 0.96);
+    }
+
+    /* Burbujas de chat */
+    .mq-bubble {
+      border-left: 2px solid var(--elite-gold);
+      background: #0f1322;
+      padding: 10px 14px;
+      border-radius: 4px 12px 12px 12px;
+      color: #fff;
+      font-size: 13.5px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    /* Caja de Entrada de Texto (Fijada abajo) */
+    .mq-chat-input {
+      display: flex;
+      align-items: center;
+      background: #060912;
+      border-top: 1px solid rgba(212,175,55,0.2);
+      padding: 10px 12px;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Controles de Audio de la Telemetría (Fijados abajo) */
+    .audio-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px;
+      background: #03050a;
+      border-top: 1px solid rgba(212,175,55,0.15);
+      flex-shrink: 0;
+    }
+
+    /* Precios */
+    #precios {
+      background: radial-gradient(circle at bottom, var(--elite-blue) 0%, var(--elite-dark-bg) 100%) !important;
+    }
+</style>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" id="inicio">
+    <nav class="site-nav" aria-label="Navegacion principal">
+      <a class="brand" href="#inicio" aria-label="MAXIQUEEN OS inicio">
+        <img src="assets/img/Logo_Oficial_2026.png" alt="" class="brand-mark">
+        <span>SYNDICATE // MATRIX</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#modulos">Estrategias</a>
+        <a href="#accesos">Canales</a>
+        <a href="#galeria">Campañas</a>
+        <a href="#notion">Consola</a>
+      </div>
+
+      <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Cambiar tema">
+        Modo
+      </button>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <video
+          src="assets/anime_logo.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          class="hero-video">
+        </video>
+        <img src="assets/img/MAXIQUEEN_LOGO.png" alt="" class="hero-logo-fallback">
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">BLACK_CARD_ACCESS_ONLY</p>
+        <h1 id="hero-title">“The Marketing Matrix”</h1>
+        <p class="hero-lead">
+          Nivel Élite en automatización comercial. Ingeniería inversa de algoritmos publicitarios, embudos de conversión masiva integrados a Notion y despliegue exclusivo de activos autónomos de monetización.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#modulos">Auditar Canales VIP</a>
+          <a class="btn btn-secondary" href="https://wa.me/573016625921?text=Hola%20MAXIQUEEN%20OS.%20Quiero%20acceder%20al%20sindicato%20de%20marketing%20elite." target="_blank" rel="noopener">Uplink Encriptado</a>
+        </div>
+
+        <div class="hero-metrics" aria-label="Indicadores del sistema">
+          <div>
+            <strong style="color: var(--elite-gold);">ALGORITMOS</strong>
+            <span>Tráfico Black-Box</span>
+          </div>
+          <div>
+            <strong style="color: var(--elite-gold);">CONVERSIÓN</strong>
+            <span>Modelos de Tracción ROI</span>
+          </div>
+          <div>
+            <strong style="color: var(--elite-gold);">MEMBRESÍA</strong>
+            <span>SaaS Autogestionado</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="modulos" aria-labelledby="modulos-title">
+      <div class="section-heading">
+        <p class="eyebrow">Operaciones Exclusivas</p>
+        <h2 id="modulos-title">Matriz Comercial de Alta Gama</h2>
+        <p>
+          Protocolos cerrados y optimizados para escalar conversiones, evadir saturación de audiencias y estructurar ecosistemas de venta líquida.
+        </p>
+      </div>
+
+      <div class="module-grid">
+        <article class="module-card">
+          <span class="card-kicker">Retención Máxima</span>
+          <h3>Tráfico Viral Vertical</h3>
+          <p>Modelado de ganchos psicológicos avanzados y distribución algorítmica para dominar TikTok e Instagram de manera orgánica.</p>
+          <a href="#mqChat" onclick="toggleChat()" class="text-link" style="color: var(--elite-gold);">Sincronizar Canal</a>
+        </article>
+
+        <article class="module-card">
+          <span class="card-kicker">Paid Media Syndicate</span>
+          <h3>Escalamiento Ads Premium</h3>
+          <p>Estructuras CBO avanzadas, arquitecturas de píxeles redundantes y contingencias optimizadas para presupuestos corporativos.</p>
+          <a href="https://maxiqueen-os.vercel.app/CRM_PAG_FEB.html" target="_blank" rel="noopener" class="text-link" style="color: var(--elite-gold);">Inyectar Campañas</a>
+        </article>
+
+        <article class="module-card">
+          <span class="card-kicker">Copywriting de Autoridad</span>
+          <h3>Ingeniería Neuro-Persuasiva</h3>
+          <p>Estructuración de cartas de venta de alta conversión y secuencias de correos automatizadas usando modelos de psicología transaccional.</p>
+          <a href="https://skillshop.credential.net/profile/cesarbedoyabarragan/wallet" target="_blank" rel="noopener" class="text-link" style="color: var(--elite-gold);">Verificar Credencial Ads</a>
+        </article>
+
+        <article class="module-card">
+          <span class="card-kicker">Infraestructura Cerrada</span>
+          <h3>Automatización Monetaria</h3>
+          <p>Enlace maestro entre Hotmart, pasarelas globales y bases de datos Notion para control absoluto de cobros y facturación serverless.</p>
+          <a href="https://nextjs-wiia.vercel.app" class="text-link" style="color: var(--elite-gold);">Lanzar Arquitectura SaaS</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell compact" id="accesos" aria-labelledby="accesos-title">
+      <div class="section-heading">
+        <p class="eyebrow">Terminales de Enlace</p>
+        <h2 id="accesos-title">Pasarelas Privadas del Ecosistema</h2>
+      </div>
+
+      <div class="access-grid">
+        <a href="https://skillshop.credential.net/profile/cesarbedoyabarragan/wallet" target="_blank" rel="noopener">Google Skillshop Verified Wallet</a>
+        <a href="https://maxiqueen-os-app.vercel.app" target="_blank" rel="noopener">MaxiQueen OS Core App</a>
+        <a href="https://maxiqueen-ver.vercel.app/" target="_blank" rel="noopener">Renderizador de Contenido 3D</a>
+        <a href="https://maxiqueen-os.vercel.app/ChatOS.html" target="_blank" rel="noopener">Matriz de Canales Chat</a>
+        <a href="https://maxiqueen-os.vercel.app/MaxiqueenIA.html" target="_blank" rel="noopener">Políticas de Privacidad y Términos</a>
+      </div>
+    </section>
+
+    <section class="section-shell" id="galeria" aria-labelledby="galeria-title">
+      <div class="section-heading">
+        <p class="eyebrow">Telemetría Gráfica</p>
+        <h2 id="galeria-title">Pruebas de Despliegue Visual</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <button type="button" class="gallery-item" onclick="openLightbox('assets/img/Modulo_Web.png')" aria-label="Ampliar modulo web" style="border: 1px solid rgba(212,175,55,0.2);">
+          <img src="assets/img/Modulo_Web.png" alt="Modulo web MaxiQueen OS" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" onclick="openLightbox('assets/img/Modulo_Creativo.png')" aria-label="Ampliar modulo creativo" style="border: 1px solid rgba(212,175,55,0.2);">
+          <img src="assets/img/Modulo_Creativo.png" alt="Modulo creativo MaxiQueen OS" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" onclick="openLightbox('assets/img/Modulo_Automatizacion.png')" aria-label="Ampliar modulo automatizacion" style="border: 1px solid rgba(212,175,55,0.2);">
+          <img src="assets/img/Modulo_Automatizacion.png" alt="Modulo automatizacion MaxiQueen OS" loading="lazy">
+        </button>
+        <button type="button" class="gallery-item" onclick="openLightbox('assets/img/Maxiqueen_Cloud_Chat_Ecosystem.png')" aria-label="Ampliar ecosistema de chat" style="border: 1px solid rgba(212,175,55,0.2);">
+          <img src="assets/img/Maxiqueen_Cloud_Chat_Ecosystem.png" alt="Ecosistema cloud chat MaxiQueen OS" loading="lazy">
+        </button>
+      </div>
+    </section>
+
+    <section class="section-shell compact" id="notion" aria-labelledby="notion-title">
+      <div class="section-heading">
+        <p class="eyebrow">Consola de Mando Central</p>
+        <h2 id="notion-title">Panel Sincronizado de Membresía</h2>
+      </div>
+
+      <div class="embed-frame" style="border: 2px solid var(--elite-gold); border-radius: 16px; overflow: hidden; box-shadow: 0 0 30px var(--elite-gold-glow);">
+        <iframe
+          src="https://fantasy-pumpkin-d21.notion.site/ebd//c6102d3d774548f1b2f4ffa9069bcbc7"
+          title="Panel Notion MaxiQueen OS"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/573016625921?text=Hola%20MAXIQUEEN%20OS.%20Quiero%20optimizar%20mis%20campañas%20con%20el%20agente%20de%20marketing."
+    target="_blank"
+    rel="noopener"
+    aria-label="Contactar por WhatsApp"
+    style="background: var(--elite-gold); color: #000; box-shadow: 0 0 20px var(--elite-gold-glow); font-weight: 900;">
+    VIP
+  </a>
+
+  <!-- CONSOLA CHAT CON ESTILO DE ENLACE DE ALTA SEGURIDAD -->
+  <section class="mq-chat minimized" id="mqChat" aria-label="Chat MaxiQueen Marketing AI">
+    <div class="mq-chat-header">
+      <div class="chat-title" style="color: #fff; font-weight: bold;">SYNDICATE_CORE<span> // UP-LINK</span></div>
+      <button class="chat-toggle" type="button" onclick="toggleChat()" aria-label="Minimizar o abrir chat" style="color: var(--elite-gold);">Abrir</button>
+    </div>
+    
+    <div class="avatar-stream-box">
+      <div class="avatar-overlay-ui">
+        🔒 SECURE LINE: ENCRYPTED <br>
+        👑 NODAL NODE: VIP ACCESS <br>
+        🎭 TARGET: INTERACTIVE AVATAR
+      </div>
+      <video id="mqAvatarStream" autoplay playsinline class="avatar-video" poster="assets/img/MAXIQUEEN_LOGO.png"></video>
+    </div>
+    
+    <div class="mq-chat-body" id="mqChatBody" aria-live="polite">
+      <div class="mq-message bot">
+        <div class="mq-bubble" style="border-left: 2px solid var(--elite-gold); background: #0f1322;">Canal de comunicación de élite activo. Protocolo de crecimiento exponencial listo. Proporciona tus métricas o inicializa la telemetría vocal de transmisión de comando.</div>
+      </div>
+    </div>
+
+    <form class="mq-chat-input" id="mqChatForm" style="display: flex; align-items: center; background: #060912; border-top: 1px solid rgba(212,175,55,0.2); padding: 8px 12px; gap: 8px; position: relative;">
+        <div id="mqFileBadge" style="display: none; position: absolute; top: -35px; left: 15px; background: var(--elite-gold); color: #000; padding: 3px 8px; font-size: 11px; border-radius: 5px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 20;"></div>
+
+        <label for="mqFileInput" style="cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; color: var(--elite-gold); padding: 5px;">
+            📎
+        </label>
+        <input type="file" id="mqFileInput" accept="image/*,video/*,application/pdf" style="display: none;">
+
+        <input type="text" id="mqInput" placeholder="Establecer objetivo comercial avanzado..." autocomplete="off" aria-label="Mensaje para MaxiQueen AI" style="flex: 1; background: transparent; border: none; color: #fff; outline: none; padding: 8px 4px; font-size: 14px;">
+
+        <button id="mqSendBtn" type="submit" style="background: linear-gradient(135deg, var(--elite-gold) 0%, #b89326 100%); color: #000; border: none; padding: 6px 16px; border-radius: 20px; font-weight: 900; cursor: pointer; font-size: 12px; text-transform: uppercase;">
+            Ejecutar
+        </button>
+    </form>
+
+    <div class="audio-controls" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; padding: 6px; background: #03050a; border-top: 1px solid rgba(212,175,55,0.1);">
+        <button type="button" id="mqVoiceBtn" onclick="MQAudio.resume()" style="background: #090e1a; border: 1px solid var(--elite-gold); color: var(--elite-gold); padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; font-weight: bold;">
+            🎙️ Telemetría ON
+        </button>
+        <button type="button" id="mqPauseBtn" onclick="MQAudio.pause()" style="background: #090e1a; border: 1px solid #333; color: #aaa; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">
+            ⏸️ Pausar
+        </button>
+        <button type="button" id="mqRepeatBtn" onclick="MQAudio.speak(MQAudio.lastText)" style="background: #090e1a; border: 1px solid #333; color: #aaa; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">
+            🔁 Replay
+        </button>
+        <button type="button" id="mqStopBtn" onclick="MQAudio.stop()" style="background: #090e1a; border: 1px solid var(--elite-crimson); color: var(--elite-crimson); padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">
+            ⏹️ Mute
+        </button>
+    </div>
+  </section>
+
+  <button class="mq-bubble-launcher" type="button" onclick="toggleChat()" aria-label="Abrir chat MaxiQueen AI" style="border: 2px solid var(--elite-gold); box-shadow: 0 0 20px var(--elite-gold-glow);">
+    <video src="assets/anime_logo.mp4" autoplay loop muted playsinline></video>
+  </button>
+
+  <footer class="site-footer">
+   <section class="section-shell" id="precios" style="padding: 60px 20px; border-top: 1px solid rgba(212,175,55,0.15);">
+    <div class="section-heading" style="text-align: center; margin-bottom: 40px;">
+      <p class="eyebrow" style="color: var(--elite-crimson); letter-spacing: 3px;">Acceso Otorgado</p>
+      <h2 id="precios-title" style="color: #fff; font-size: 2.5rem; font-weight: 900;">Adquirir Llave Operativa del Sindicato</h2>
+      <p style="color: #94a3b8;">Despliega el motor exclusivo de automatización comercial en tu negocio.</p>
+    </div>
+
+    <div class="module-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+      <article class="module-card" style="padding: 35px; background: var(--elite-card-bg); relative;">
+        <span class="card-kicker">Acceso Nivel 1</span>
+        <h3 style="color: #fff; margin: 15px 0 10px 0; font-size: 1.8rem; font-weight: 800;">Quantum Agent V2</h3>
+        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 25px;">Router inteligente comercial activo de manera permanente. Incluye panel de control táctico y módulo analítico adaptativo.</p>
+        <div style="margin-bottom: 30px;">
+          <span style="font-size: 2.8rem; font-weight: 900; color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.1);">$35990</span>
+          <span style="color: #64748b;"> / mes</span>
+        </div>
+        <a href="https://pay.hotmart.com/P103285828N?bid=1782959907491" target="_blank" rel="noopener" class="btn btn-primary" style="display: block; text-align: center; padding: 14px; border-radius: 10px; text-decoration: none;">
+          Comprar Llave de Acceso
+        </a>
+      </article>
+
+      <article class="module-card" style="padding: 35px; background: var(--elite-card-bg); border: 2px solid var(--elite-gold) !important; relative;">
+        <span class="card-kicker" style="background: var(--elite-gold) !important; color: #000 !important; font-weight: bold;">Sindicato Completo</span>
+        <h3 style="color: #fff; margin: 15px 0 10px 0; font-size: 1.8rem; font-weight: 800;">Full Ecosistema OS</h3>
+        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 25px;">La suite maestra sin restricciones: Inteligencia de Negocios, Auditoría Financiera, CRM e integración total H5.</p>
+        <div style="margin-bottom: 30px;">
+          <span style="font-size: 2.8rem; font-weight: 900; color: #fff; text-shadow: 0 0 20px var(--elite-gold-glow);">$75990</span>
+          <span style="color: #64748b;"> / mes</span>
+        </div>
+        <a href="https://hotmart.com/es/marketplace/productos/marketing-digital-con-cesar-b/P103285828N" target="_blank" rel="noopener" class="btn btn-primary" style="display: block; text-align: center; padding: 14px; border-radius: 10px; text-decoration: none; background: linear-gradient(135deg, #fff 0%, var(--elite-gold) 100%) !important;">
+          Activar Ecosistema Total
+        </a>
+      </article>
+    </div>
+   </section>
+  </footer>
+
+  <div id="mq-lightbox" class="lightbox" aria-hidden="true">
+    <button type="button" class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar imagen">Cerrar</button>
+    <img id="mq-lightbox-img" alt="">
+  </div>
+
+  <script src="js/theme-toggle.js" defer></script>
+  <script src="js/systemPrompt.js" defer></script>
+  <script src="js/gallery.js" defer></script>
+  <script src="js/chat-ui.js" defer></script>
+</body>
+</html>
