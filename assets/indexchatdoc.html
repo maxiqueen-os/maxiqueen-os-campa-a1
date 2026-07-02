@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MAXIQUEEN OS</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial;
+    }
+
+    body{
+      background:#0f1117;
+      color:white;
+      height:100vh;
+    }
+
+    .app-layout{
+      display:flex;
+      height:100vh;
+    }
+
+    .sidebar{
+      width:240px;
+      background:#161b22;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      border-right:1px solid #333;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+      margin-bottom:20px;
+      color:#00ffd5;
+    }
+
+    .sidebar button{
+      padding:12px;
+      background:#222;
+      border:none;
+      color:white;
+      cursor:pointer;
+      border-radius:8px;
+    }
+
+    .sidebar button:hover{
+      background:#333;
+    }
+
+    .main-panel{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      padding:20px;
+      gap:20px;
+    }
+
+    .topbar input{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      background:#1c2128;
+      color:white;
+    }
+
+    .hero-panel{
+      background:#161b22;
+      padding:30px;
+      border-radius:16px;
+    }
+
+    .hero-panel h1{
+      font-size:42px;
+      margin-bottom:10px;
+      color:#00ffd5;
+    }
+
+    .upload-panel{
+      display:flex;
+      gap:10px;
+    }
+
+    .upload-panel button{
+      padding:10px 20px;
+      border:none;
+      background:#00ffd5;
+      color:black;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .chat-panel{
+      flex:1;
+      background:#161b22;
+      border-radius:16px;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    #chat-box{
+      flex:1;
+      overflow-y:auto;
+      margin-bottom:20px;
+    }
+
+    .chat-input{
+      display:flex;
+      gap:10px;
+    }
+
+    .chat-input input{
+      flex:1;
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      background:#1c2128;
+      color:white;
+    }
+
+    .chat-input button{
+      padding:14px 24px;
+      border:none;
+      border-radius:10px;
+      background:#00ffd5;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .user-msg{
+      background:#2563eb;
+      padding:12px;
+      border-radius:10px;
+      margin-bottom:10px;
+    }
+
+    .ai-msg{
+      background:#222;
+      padding:12px;
+      border-radius:10px;
+      margin-bottom:10px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+  <aside class="sidebar">
+
+    <div class="logo">MAXIQUEEN</div>
+
+    <button>Dashboard</button>
+    <button>AI</button>
+    <button>Videos</button>
+    <button>Música</button>
+    <button>Documentos</button>
+    <button>Cloud</button>
+
+  </aside>
+
+  <main class="main-panel">
+
+    <header class="topbar">
+      <input type="text" placeholder="Buscar recursos...">
+    </header>
+
+    <section class="hero-panel">
+      <h1>MAXIQUEEN OS</h1>
+      <p>Sistema Inteligente Multimedia</p>
+    </section>
+
+    <section class="upload-panel">
+      <input type="file" id="fileInput">
+      <button>Subir Documento</button>
+    </section>
+
+    <section class="chat-panel">
+
+      <div id="chat-box"></div>
+
+      <div class="chat-input">
+
+        <input
+          type="text"
+          id="message"
+          placeholder="Pregunta algo..."
+        >
+
+        <button onclick="sendMessage()">
+          Enviar
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+
+async function sendMessage(){
+
+  const input = document.getElementById("message");
+  const chatBox = document.getElementById("chat-box");
+
+  const message = input.value;
+
+  if(!message) return;
+
+  chatBox.innerHTML += `
+    <div class="user-msg">
+      Tú: ${message}
+    </div>
+  `;
+
+  input.value = "";
+
+  try{
+
+    const response = await fetch(
+      "http://127.0.0.1:11434/api/generate",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          model: "maxiqueen-lite:latest",
+          prompt:message,
+          stream:false
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    chatBox.innerHTML += `
+      <div class="ai-msg">
+        MAXIQUEEN:
+        <br><br>
+        ${data.response}
+      </div>
+    `;
+
+  }catch(error){
+
+    console.error(error);
+
+    chatBox.innerHTML += `
+      <div class="ai-msg">
+        Error conectando con MAXIQUEEN
+      </div>
+    `;
+  }
+}
+
+</script>
+
+
+</body>
+</html>

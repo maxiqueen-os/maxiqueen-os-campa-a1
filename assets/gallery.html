@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxiQueen OS - Centro de Mando</title>
+    <style>
+        /* =========================================
+           VARIABLES DEL SISTEMA & TEMA CYBERPUNK
+           ========================================= */
+        :root {
+            --bg-color: #050510;
+            --neon-primary: #00f3ff;
+            --neon-secondary: #ff00ea;
+            --glass-bg: rgba(16, 18, 27, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #e0e6ed;
+            --text-muted: #8a94a5;
+            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(255, 0, 234, 0.08) 0%, transparent 50%);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        /* =========================================
+           SISTEMA DE CUADRÍCULA (PC & MÓVIL)
+           ========================================= */
+        .mq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* =========================================
+           GLASSMORPHISM & TARJETAS
+           ========================================= */
+        .mq-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mq-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-primary), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(0, 243, 255, 0.3);
+        }
+
+        .mq-card:hover::before {
+            opacity: 1;
+        }
+
+        /* =========================================
+           MEDIOS (IMÁGENES Y VIDEOS)
+           ========================================= */
+        .media-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            aspect-ratio: 16/9;
+        }
+
+        .media-container img,
+        .media-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Controles de Video Superpuestos */
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        .btn-play {
+            background: rgba(16, 18, 27, 0.8);
+            border: 1px solid var(--neon-primary);
+            color: var(--neon-primary);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+
+        .btn-play:hover {
+            background: var(--neon-primary);
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.6);
+        }
+
+        .video-overlay.is-playing {
+            background: transparent;
+        }
+        
+        .video-overlay.is-playing .btn-play {
+            opacity: 0;
+        }
+
+        .media-container:hover .video-overlay.is-playing .btn-play {
+            opacity: 1;
+        }
+
+        /* =========================================
+           CONTENIDO Y BOTONES DE ACCIÓN
+           ========================================= */
+        .card-content h3 {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: none;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            /* Optimización móvil: Área táctil mínima */
+            min-height: 44px; 
+        }
+
+        .btn-primary {
+            background: transparent;
+            color: var(--neon-secondary);
+            border: 1px solid var(--neon-secondary);
+        }
+
+        .btn-primary:hover, .btn-primary:active {
+            background: rgba(255, 0, 234, 0.1);
+            box-shadow: inset 0 0 10px rgba(255, 0, 234, 0.3);
+        }
+
+        .btn-share {
+            background: var(--neon-primary);
+            color: #000;
+        }
+
+        .btn-share:hover, .btn-share:active {
+            background: #fff;
+            box-shadow: 0 0 15px var(--neon-primary);
+        }
+
+        /* =========================================
+           MEDIA QUERIES (RESPONSIVE)
+           ========================================= */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .mq-grid { grid-template-columns: 1fr; }
+            body { padding: 1rem; }
+            .btn:hover { transform: none; } /* Desactiva transformaciones hover en móviles */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MaxiQueen OS</h1>
+        <p style="color: var(--text-muted); margin-top: 10px;">Centro de Distribución de Recursos</p>
+    </header>
+
+    <main class="mq-grid">
+        
+        <!-- =========================================
+             MÓDULO 1: IMAGEN ESTÁTICA
+             ========================================= -->
+        <article class="mq-card mq-image" id="asset-001">
+            <div class="media-container">
+                <!-- Reemplaza el src con tu imagen real de Cloudinary o servidor local -->
+                <img src="https://via.placeholder.com/600x400/10121b/00f3ff?text=MaxiQueen+Asset+1" alt="Recurso Visual 1">
+            </div>
+            <div class="card-content">
+                <h3>Plantilla UI Futurista</h3>
+                <p>Componente visual con estética cyberpunk para integración en plataformas SaaS.</p>
+            </div>
+            <div class="card-actions">
+                <button class="btn btn-primary" onclick="downloadAsset('asset1.png')">
+                    <span>Descargar</span>
+                </button>
+                <button class="btn btn-share" onclick="shareContent('Plantilla UI Futurista', 'Mira este recurso de MaxiQueen OS', 'https://tu-dominio.com/asset-1')">
+                    <span>Compartir</span>
+                </button>
+            </div>
+        </article>
+
+        <!-- =========================================
+             MÓDULO 2: VIDEO REPRODUCTOR
+             ========================================= -->
+        <article class="mq-card mq-video" id="asset-002">
+            <div class="media-container">
+                <!-- Reemplaza el src con tu video real -->
+                <video id="video-1" loop muted playsinline poster="https://via.placeholder.com/600x400/10121b/ff00ea?text=MaxiQueen+Video+Preview">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Tu navegador no soporta videos.
+                </video>
+                <div class="video-overlay" id="overlay-1">
+                    <button class="btn-play" onclick="togglePlay('video-1', 'overlay-1')" aria-label="Reproducir video">
+                        <span class="play-icon">▶</span>
+                    </button>
+                </div>
+            </div>
+            <div class="card-content">
+                <h3>Demo: Automatización AI</h3>
+                <p>Demostración en video del flujo de trabajo integrado con modelos de lenguaje.</p>
+            </div>
+            <div class="card-actions">
+                <button class="btn btn-primary" onclick="downloadAsset('video_demo.mp4')">
+                    <span>Descargar</span>
+                </button>
+                <button class="btn btn-share" onclick="shareContent('Demo AI', 'Revisa el funcionamiento del nuevo módulo', 'https://tu-dominio.com/asset-2')">
+                    <span>Compartir</span>
+                </button>
+            </div>
+        </article>
+
+        <!-- =========================================
+             MÓDULO 3: PRODUCTO DIGITAL / CURSO
+             ========================================= -->
+        <article class="mq-card mq-image" id="asset-003">
+            <div class="media-container">
+                <img src="https://via.placeholder.com/600x400/10121b/ffffff?text=Curso+Ads+AI" alt="Curso Performance Ads">
+            </div>
+            <div class="card-content">
+                <h3>Performance Ads IA</h3>
+                <p>Estrategias de distribución digital utilizando algoritmos de optimización.</p>
+            </div>
+            <div class="card-actions">
+                <!-- Enlace directo, por ejemplo a Hotmart -->
+                <button class="btn btn-primary" onclick="window.open('https://hotmart.com/', '_blank')">
+                    <span>Acceder</span>
+                </button>
+                <button class="btn btn-share" onclick="shareContent('Curso Performance Ads IA', 'Aprende a escalar tus ventas', 'https://tu-dominio.com/curso-ads')">
+                    <span>Compartir</span>
+                </button>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- =========================================
+         LÓGICA DEL SISTEMA (JS PURO)
+         ========================================= -->
+    <script>
+        /**
+         * Controla la reproducción y pausa de los elementos de video.
+         * Actualiza la interfaz del botón superpuesto.
+         */
+        function togglePlay(videoId, overlayId) {
+            const video = document.getElementById(videoId);
+            const overlay = document.getElementById(overlayId);
+            const icon = overlay.querySelector('.play-icon');
+
+            if (video.paused) {
+                video.play();
+                icon.textContent = '⏸';
+                overlay.classList.add('is-playing');
+            } else {
+                video.pause();
+                icon.textContent = '▶';
+                overlay.classList.remove('is-playing');
+            }
+        }
+
+        /**
+         * API Web Share con fallback automático al portapapeles.
+         * Garantiza el funcionamiento en móviles nativos y navegadores de PC.
+         */
+        async function shareContent(title, text, url) {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: title,
+                        text: text,
+                        url: url
+                    });
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        console.error('Error al compartir:', error);
+                        copyToClipboard(url);
+                    }
+                }
+            } else {
+                // Fallback para navegadores de escritorio que no soportan Web Share API
+                copyToClipboard(url);
+            }
+        }
+
+        /**
+         * Copia el enlace al portapapeles y notifica al usuario.
+         */
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('¡Enlace copiado al portapapeles exitosamente!');
+            }).catch(err => {
+                console.error('Error al copiar al portapapeles:', err);
+                alert('No se pudo copiar el enlace.');
+            });
+        }
+
+        /**
+         * Función simulada para descarga directa de archivos.
+         */
+        function downloadAsset(filename) {
+            // En un entorno real, esto apuntaría a la ruta del archivo
+            alert('Iniciando descarga de: ' + filename);
+        }
+    </script>
+</body>
+</html>
