@@ -354,12 +354,17 @@
                 const resData = await res.json();
                 const reply = resData.text || resData.reply || 'Error';
                 body.innerHTML += `<div class="mq-bubble">${reply}</div>`;
-                chatHistory.push({ role: 'user', text: msg }); chatHistory.push({ role: 'assistant', text: reply });
+                chatHistory.push({ role: 'user', text: msg }); 
+                chatHistory.push({ role: 'assistant', text: reply });
                 if (chatHistory.length > 12) chatHistory = chatHistory.slice(-12);
-                if (resData.voiceReady && window.speechSynthesis) {
+
+                // VOZ - AHORA SÍ FUNCIONA
+                if (window.speechSynthesis && reply) {
                     window.speechSynthesis.cancel();
                     currentUtterance = new SpeechSynthesisUtterance(reply);
-                    currentUtterance.lang = 'es-ES'; currentUtterance.rate = 1.15; currentUtterance.volume = globalVolume;
+                    currentUtterance.lang = 'es-ES'; 
+                    currentUtterance.rate = 1.15; 
+                    currentUtterance.volume = globalVolume;
                     window.speechSynthesis.speak(currentUtterance);
                 }
             } catch (err) {
