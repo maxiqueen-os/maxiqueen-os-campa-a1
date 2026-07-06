@@ -334,16 +334,25 @@
             const body = document.getElementById('mqChatBody');
             const msg = input.value.trim();
             if (!msg && !fileInput.files[0]) return;
-            body.innerHTML += `<div class="mq-bubble user">${msg || '<i>[Archivo]</i>'}</div>`;
+            const userDiv = document.createElement('div');
+userDiv.className = 'mq-bubble user';
+userDiv.innerHTML = msg || '<i>[Archivo]</i>';
+body.appendChild(userDiv);
+
             input.value = '';
             body.scrollTop = body.scrollHeight;
             const files = [];
             if (fileInput.files[0]) {
-                const file = fileInput.files[0];
-                const base64 = await file.arrayBuffer().then(b => btoa(String.fromCharCode(...new Uint8Array(b))));
-                files.push({ mimeType: file.type, base64Data: base64 });
-                fileInput.value = '';
-            }
+    const file = fileInput.files[0];
+    const base64 = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]); // quita "data:...;base64,"
+        reader.readAsDataURL(file);
+    });
+    files.push({ mimeType: file.type, base64Data: base64 });
+    fileInput.value = '';
+}
+
             try {
                 const systemPrompt = `Eres el asistente del MAPA MAXIQUEEN OS v0.8. Conoces los 14 módulos completos con sus pitches, capacidades, clientes ideales y monetización. Responde en español, directo y técnico. Si preguntan por un ID, da su rol, qué hace, qué no hace, y a quién venderlo.`;
                 const res = await fetch(API_URL, {
