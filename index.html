@@ -11,22 +11,22 @@
     <style>
         :root { color-scheme: dark; }
         body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #050708; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        .glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+      .mono { font-family: 'JetBrains Mono', monospace; }
+      .glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #0a0f14; }
         ::-webkit-scrollbar-thumb { background: #1f3d2e; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
-        .gold-glow { box-shadow: 0 0 40px rgba(212,175,55,0.15), inset 0 1px 0 rgba(255,255,255,0.05); }
-        .mq-chat { position: fixed; bottom: 0; right: 20px; width: 380px; height: 600px; max-height: 85vh; display: flex; flex-direction: column; border: 2px solid #d4af37; box-shadow: 0 30px 70px rgba(0,0,0,0.9); border-radius: 24px 24px 0 0; background: #04060a; z-index: 9999; overflow: hidden; transition: all 0.3s; }
-        .mq-chat.minimized { height: 48px!important; }
-        .mq-chat-header { background: #090e1a; border-bottom: 2px solid #d4af37; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
-        .mq-chat-body { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 12px; background: rgba(4,6,10,0.96); }
-        .mq-bubble { border-left: 2px solid #d4af37; background: #0f1322; padding: 10px 14px; border-radius: 4px 12px; color: #fff; font-size: 13.5px; line-height: 1.5; max-width: 85%; }
-        .mq-bubble.user { margin-left: auto; border-left: none; border-right: 2px solid #10b981; background: #0a1f1a; }
-        .mq-chat-input { display: flex; align-items: center; background: #060912; border-top: 1px solid rgba(212,175,55,0.2); padding: 10px 12px; gap: 8px; flex-shrink: 0; }
-        .mq-bubble-launcher { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; border: 2px solid #d4af37; background: #000; box-shadow: 0 0 20px rgba(212,175,55,0.5); cursor: pointer; z-index: 9998; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-        .mq-bubble-launcher.hidden { display: none; }
+      .gold-glow { box-shadow: 0 0 40px rgba(212,175,55,0.15), inset 0 1px 0 rgba(255,255,255,0.05); }
+      .mq-chat { position: fixed; bottom: 0; right: 20px; width: 380px; height: 600px; max-height: 85vh; display: flex; flex-direction: column; border: 2px solid #d4af37; box-shadow: 0 30px 70px rgba(0,0,0,0.9); border-radius: 24px 24px 0 0; background: #04060a; z-index: 9999; overflow: hidden; transition: all 0.3s; }
+      .mq-chat.minimized { height: 48px!important; }
+      .mq-chat-header { background: #090e1a; border-bottom: 2px solid #d4af37; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+      .mq-chat-body { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 12px; background: rgba(4,6,10,0.96); }
+      .mq-bubble { border-left: 2px solid #d4af37; background: #0f1322; padding: 10px 14px; border-radius: 4px 12px; color: #fff; font-size: 13.5px; line-height: 1.5; max-width: 85%; }
+      .mq-bubble.user { margin-left: auto; border-left: none; border-right: 2px solid #10b981; background: #0a1f1a; }
+      .mq-chat-input { display: flex; align-items: center; background: #060912; border-top: 1px solid rgba(212,175,55,0.2); padding: 10px 12px; gap: 8px; flex-shrink: 0; }
+      .mq-bubble-launcher { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; border: 2px solid #d4af37; background: #000; box-shadow: 0 0 20px rgba(212,175,55,0.5); cursor: pointer; z-index: 9998; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+      .mq-bubble-launcher.hidden { display: none; }
     </style>
 </head>
 <body class="min-h-screen text-gray-100 antialiased">
@@ -35,7 +35,6 @@
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(16,185,129,0.1),transparent_50%)]"></div>
         <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,#050708_90%)]"></div>
     </div>
-    
     <div class="relative z-10">
         <header class="sticky top-0 z-40 border-b border-white/5 bg-black/40 glass">
             <div class="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
@@ -53,7 +52,6 @@
                 </div>
             </div>
         </header>
-
         <main class="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
             <div class="mb-6 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
                 <div class="flex items-center gap-3">
@@ -67,7 +65,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="overflow-hidden rounded-2xl border border-white/10 bg-[#0b1218]/70 glass gold-glow">
                 <div class="overflow-x-auto">
                     <table class="w-full min-w-[1600px] text-[13px] text-left">
@@ -86,181 +83,195 @@
                             </tr>
                         </thead>
                         <tbody id="nodesTable" class="divide-y divide-white/[0.04]">
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">1</span></td>
-                                <td class="px-4 py-3"><a href="https://maxiqueen-os-framework.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os-framework.vercel.app</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Portal de Auditoría Financiera IA</td>
-                                <td class="px-4 py-3 text-red-400/80">no lee imágenes</td>
-                                <td class="px-4 py-3 text-emerald-400">genera informes pero no lee audio</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">505 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Módulos como el ID 1 manejan exclusivamente GROQ_API_KEY (ideal para respuestas ultra rápidas de texto).</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-framework Public</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Este producto se puede vender bajo un modelo SaaS por volumen de líneas de datos</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">2</span></td>
-                                <td class="px-4 py-3"><a href="https://nextjs-m162.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">nextjs-m162.vercel.app</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Consultoría de Negocios V1</td>
-                                <td class="px-4 py-3 text-red-400/80">no lee imágenes</td>
-                                <td class="px-4 py-3 text-emerald-400">lee documentos</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">394 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Analizando las pruebas que hiciste, el ID 2 es un verdadero "Cerebro de Diagnóstico"</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-os/maxiqueen_os-agents</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Modelo Suscripción B2B (Consultor Virtual)</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">3</span></td>
-                                <td class="px-4 py-3"><a href="https://maxiqueen-os.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os.vercel.app</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Router Inteligente 1</td>
-                                <td class="px-4 py-3 text-red-400/80">chat local, ID 1 solo muestra la imagen no la lee</td>
-                                <td class="px-4 py-3 text-emerald-400">ANALIZA documentos</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">4700 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 Límites Técnicos del ID 3: No es un Chat de Atención Final.</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen_os Public</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Modelo Middleware Corporativo (Core Core)</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">4</span></td>
-                                <td class="px-4 py-3"><a href="https://maxiqueen-os-v2.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os-v2.vercel.app</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Exploratoria (Multidireccional)</td>
-                                <td class="px-4 py-3 text-red-400/80">incluye ID 5 e ID 1</td>
-                                <td class="px-4 py-3 text-emerald-400">SI lee IMÁGENES Y documentos</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">445 lineas 🔵 Pendiente</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Hub experimental (Beta), no se vende como una herramienta rígida.</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">MAXIQUEEN_WEB_V2 Private</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Módulo Upgrade Premium (Entorno Multimodal)</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">5</span></td>
-                                <td class="px-4 py-3"><a href="https://chat-maxiqueen-os.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">chat-maxiqueen-os.vercel.app/</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Landing Router</td>
-                                <td class="px-4 py-3 text-red-400/80">No ejecuta modelos locales (depende 100% de APIs en la nube)</td>
-                                <td class="px-4 py-3 text-emerald-400">analiza y lee documentos e imagenes</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">228 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Concentra un pool masivo de API Keys para evitar caídas globales.</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">Chat-MaxiqueenOS Private</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">SaaS Empresarial por Volumen "Anti-Caídas"</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">6</span></td>
-                                <td class="px-4 py-3"><a href="https://maxiqueen-os-app.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os-app.vercel.app</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Perfil Profesional</td>
-                                <td class="px-4 py-3 text-red-400/80">guarda informacion</td>
-                                <td class="px-4 py-3 text-emerald-400">INFORMACION PERSONAL Y EXPERIENCIAS</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">1003 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 No es un Chat de IA: Queda explícito en sus funciones lógicas.</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-os-perfil Private</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Módulo de Marca Personal / Add-on de Identidad</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">7</span></td>
-                                <td class="px-4 py-3"><a href="https://maxiqueen-ver.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-ver.vercel.app/</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Galeria de Contenido</td>
-                                <td class="px-4 py-3 text-red-400/80">guarda imágenes</td>
-                                <td class="px-4 py-3 text-emerald-400">mostrar imágenes</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">2232 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 No es un Almacenamiento Local Autónomo (No-Storage local).</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-ver Private</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Módulo Base de Infraestructura de Medios</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">8</span></td>
-                                <td class="px-4 py-3"><a href="https://system-maxi-queen-os.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">system-maxi-queen-os.vercel.app/</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Nucleo operacional</td>
-                                <td class="px-4 py-3 text-red-400/80">Incluye ID 1 lee imágenes, incluye ID 14 NEXUS CORE</td>
-                                <td class="px-4 py-3 text-emerald-400">lee documentos, dependen del núcleo central</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">814 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 No es un modelo de IA independiente; es la consola de administración.</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">System-MaxiQueen_OS Public</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Licencia de "Consola Central" (Platform Fee)</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">9</span></td>
-                                <td class="px-4 py-3"><a href="https://play-maxi-queen-os.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">play-maxi-queen-os.vercel.app/</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Juegos v1</td>
-                                <td class="px-4 py-3 text-red-400/80">juegos y tawk.to</td>
-                                <td class="px-4 py-3 text-emerald-400">no lee documentos</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">813 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 No procesa archivos. Diseñado para gamificación y retención.</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">play-maxiqueenos Public</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Add-on de Fidelización y Engagement</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">10</span></td>
-                                <td class="px-4 py-3"><a href="https://juegos-maxi-queen-os.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">juegos-maxi-queen-os.vercel.app/</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Juegos v2</td>
-                                <td class="px-4 py-3 text-red-400/80">juegos</td>
-                                <td class="px-4 py-3 text-emerald-400">no lee documentos</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">818 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Mapeo de despliegues limpios H5 para monetización publicitaria.</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">Juegos-MaxiQueen-OS Public</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Add-on de Fidelización y Engagement</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">11</span></td>
-                                <td class="px-4 py-3"><a href="https://chat-maxiqueen-os-v2.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">chat-maxiqueen-os-v2.vercel.app/</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Quantum Nexus</td>
-                                <td class="px-4 py-3 text-red-400/80">No ejecuta modelos locales (depende 100% de APIs en la nube)</td>
-                                <td class="px-4 py-3 text-emerald-400">analiza y lee documentos e imágenes</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">228 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 No es un sistema de almacenamiento seguro (No-Storage Core).</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">Módulo Autónomo</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">SaaS por Consumo (Pay-per-API call)</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">12</span></td>
-                                <td class="px-4 py-3"><a href="https://maxiqueen-os-marketing.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os-marketing.vercel.app/</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Portal Comercial & Embudo</td>
-                                <td class="px-4 py-3 text-red-400/80">PROCESA TANTO DOCUMENTOS PDF, ARCHIVOS COMO IMÁGENES</td>
-                                <td class="px-4 py-3 text-emerald-400">lee imágenes y documento</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">408 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Imán de prospectos inteligente (Lead Magnet Autónomo).</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">Hugging_Face_Spaces Public</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">SaaS de Calificación por Consumo / Licencia B2B</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">13</span></td>
-                                <td class="px-4 py-3"><a href="https://maxiqueen-os-campa-a1.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os-campa-a1.vercel.app/</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">Mapa Perfeccionado v0.9</td>
-                                <td class="px-4 py-3 text-red-400/80">https://maxiqueen-os.vercel.app/Cloudos.html</td>
-                                <td class="px-4 py-3 text-emerald-400">no lee documentos</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-amber-500/10 border-amber-500/30 text-amber-300 text-[11px] mono">no lee imágenes</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚀 Módulo Privado de Campañas Focalizadas.</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-os.chat Private</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Ecosistema de Despliegue de Ofertas "Premium Showcase"</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02] transition">
-                                <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">14</span></td>
-                                <td class="px-4 py-3"><a href="https://chat-maxiqueen-os-v1.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">chat-maxiqueen-os-v1.vercel.app/</a></td>
-                                <td class="px-4 py-3 text-gray-200 font-medium">PAGINA-CREATOR IA</td>
-                                <td class="px-4 py-3 text-red-400/80">No ejecuta modelos locales (depende 100% de APIs en la nube)</td>
-                                <td class="px-4 py-3 text-emerald-400">lee imágenes Y DOCUMENTO</td>
-                                <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">319 lineas ✅ Definido</span></td>
-                                <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Hereda el potente motor del Quantum Nexus original con pool de APIs balanceado.</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-400">Chat-MaxiqueenOS-V1 Public</td>
-                                <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
-                                <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Licencia "Creator OS" Todo en Uno</td>
-                            </tr>
+
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">1</span></td>
+        <td class="px-4 py-3"><a href="https://maxiqueen-os-framework.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os-framework.vercel.app</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Portal de Auditoría Financiera IA</td>
+        <td class="px-4 py-3 text-red-400/80">no lee imágenes</td>
+        <td class="px-4 py-3 text-emerald-400">genera informes pero no lee audio</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">505 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Módulos como el ID 1 manejan exclusivamente GROQ_API_KEY (ideal para respuestas ultra rápidas de texto).</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-framework Public</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Este producto se puede vender bajo un modelo SaaS por volumen de líneas de datos</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">2</span></td>
+        <td class="px-4 py-3"><a href="https://nextjs-m162.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">nextjs-m162.vercel.app</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Consultoría de Negocios V1</td>
+        <td class="px-4 py-3 text-red-400/80">no lee imágenes</td>
+        <td class="px-4 py-3 text-emerald-400">lee documentos</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">394 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Analizando las pruebas que hiciste, el ID 2 - Consultoría de Negocios V1 es un verdadero &quot;Cerebro de Diagnóstico Or</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-os/maxiqueen_os-agents</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Modelo Suscripción B2B (Consultor Virtual de Asiento Completo): Se vende como un</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">3</span></td>
+        <td class="px-4 py-3"><a href="https://maxiqueen-os.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os.vercel.app</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Router Inteligente 1</td>
+        <td class="px-4 py-3 text-red-400/80">chat local, ID 1 solo muestra la imagen no la lee</td>
+        <td class="px-4 py-3 text-emerald-400">ANALIZA documentos</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">4700 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 Lo que NO SE PUEDE VENDER (Límites Técnicos del ID 3)<br>No es un Chat de Atención al Cliente Final: Explícitamente el</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen_os Public</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Modelo Middleware Corporativo (Core Core): Se vende empaquetado como el "Motor B</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">4</span></td>
+        <td class="px-4 py-3"><a href="https://maxiqueen-os-v2.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os-v2.vercel.app</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Exploratoria (Multidireccional)</td>
+        <td class="px-4 py-3 text-red-400/80">incluye ID 5 e ID 1</td>
+        <td class="px-4 py-3 text-emerald-400">SI lee IMÁGENES Y documentos</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">445 lineas 🔵 Pendiente</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">No es un producto cerrado/final tradicional: Al ser un Hub experimental (Beta), no se vende como una herramienta rígida </td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">MAXIQUEEN_WEB_V2 Private</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Módulo Upgrade Premium (Entorno Multimodal): Se comercializa como una extensión </td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">5</span></td>
+        <td class="px-4 py-3"><a href="https://chat-maxiqueen-os.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">chat-maxiqueen-os.vercel.app/</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Landing Router</td>
+        <td class="px-4 py-3 text-red-400/80">No ejecuta modelos locales (depende 100% de APIs en la nube)</td>
+        <td class="px-4 py-3 text-emerald-400">analiza y lee documentos e imagenes</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">228 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">El ID  (Landing Router) y ID 11 (Quantum Nexus) concentran un pool masivo de API Keys (GEMINI_API_KEY del 1 al 4 y GROQ_</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">Chat-MaxiqueenOS Private</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">SaaS Empresarial por Volumen "Anti-Caídas": Planes corporativos basados en la ga</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">6</span></td>
+        <td class="px-4 py-3"><a href="https://maxiqueen-os-app.vercel.app" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os-app.vercel.app</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Perfil Profesional</td>
+        <td class="px-4 py-3 text-red-400/80">guarda informacion</td>
+        <td class="px-4 py-3 text-emerald-400">INFORMACION PERSONAL Y EXPERIENCIAS</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">1003 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 Lo que NO SE PUEDE VENDER (Límites Técnicos del ID 6)<br>No es un Chat de IA: Queda explícito en la columna &quot;Func</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-os-perfil Private</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Módulo de Marca Personal / Add-on de Identidad: Se ofrece como una extensión est</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">7</span></td>
+        <td class="px-4 py-3"><a href="https://maxiqueen-ver.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-ver.vercel.app/</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Galeria de Contenido</td>
+        <td class="px-4 py-3 text-red-400/80">guarda imágenes</td>
+        <td class="px-4 py-3 text-emerald-400">mostrar imágenes</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">2232 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 Lo que NO SE PUEDE VENDER (Límites Técnicos del ID 7)<br>No es un Almacenamiento Local Autónomo (No hace: guarda imáge</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-ver Private</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Módulo Base de Infraestructura de Medios: Se empaqueta como la "Bóveda Visual Co</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">8</span></td>
+        <td class="px-4 py-3"><a href="https://system-maxi-queen-os.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">system-maxi-queen-os.vercel.app/</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Nucleo operacional</td>
+        <td class="px-4 py-3 text-red-400/80">Incluye ID 1 lee imágenes, incluye ID 14 NEXUS CORE</td>
+        <td class="px-4 py-3 text-emerald-400">lee documentos, ADICIONAL ESTOS DE MENOS LINEAS DEPENDEN DE </td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">814 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 Lo que NO SE PUEDE VENDER (Límites Técnicos del ID 8)<br>No es un modelo de IA independiente: Este núcleo no tiene un </td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">System-MaxiQueen_OS Public</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Licencia de "Consola Central" (Platform Fee): Este no se vende como un módulo ex</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">9</span></td>
+        <td class="px-4 py-3"><a href="https://play-maxi-queen-os.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">play-maxi-queen-os.vercel.app/</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Juegos v1</td>
+        <td class="px-4 py-3 text-red-400/80">juegos y tawk.to</td>
+        <td class="px-4 py-3 text-emerald-400">no lee documentos</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">813 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 Lo que NO SE PUEDE VENDER (Límites Técnicos del ID 9)<br>No procesa archivos (No lee documentos): Está explícito en tu</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">play-maxiqueenos Public</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Add-on de Fidelización y Engagement: Se comercializa como un módulo complementar</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">10</span></td>
+        <td class="px-4 py-3"><a href="https://juegos-maxi-queen-os.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">juegos-maxi-queen-os.vercel.app/</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Juegos v2</td>
+        <td class="px-4 py-3 text-red-400/80">juegos</td>
+        <td class="px-4 py-3 text-emerald-400">no lee documentos</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">818 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🦊 El Origen del Caos: Dos Organizaciones en GitHub<br>En el video se ve claramente que estás navegando entre dos cuentas</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">Juegos-MaxiQueen-OS Public</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Add-on de Fidelización y Engagement: Se comercializa como un módulo complementar</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">11</span></td>
+        <td class="px-4 py-3"><a href="https://chat-maxiqueen-os-v2.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">chat-maxiqueen-os-v2.vercel.app/</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Quantum Nexus</td>
+        <td class="px-4 py-3 text-red-400/80">No ejecuta modelos locales (depende 100% de APIs en la nube)</td>
+        <td class="px-4 py-3 text-emerald-400">analiza y lee documentos e imágenes</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">228 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚦 Lo que NO SE PUEDE VENDER (Límites Técnicos del ID 11)<br>No es un sistema de almacenamiento seguro (No-Storage Core):</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400"></td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">SaaS por Consumo (Pay-per-API call + Premium Front): Se comercializa bajo un esq</td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">12</span></td>
+        <td class="px-4 py-3"><a href="https://maxiqueen-os-marketing.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">https://maxiqueen-os-marketing.vercel.app/</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Portal Comercial & Embudo de Ventas Automatizadas.</td>
+        <td class="px-4 py-3 text-red-400/80">PROCESA TANTO DOCUMENTOS PDF, ARCHIVOS COMO IMÁGENES DE IGUA</td>
+        <td class="px-4 py-3 text-emerald-400">lee imágenes y documento</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">408 lineas s ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Tu embudo de marketing no es una landing page estática y aburrida; es un imán de prospectos inteligente (Lead Magnet Aut</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">Hugging_Face_Spaces Public</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">SaaS de Calificación por Consumo / Licencia B2B Premium: Se implementa como una </td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">13</span></td>
+        <td class="px-4 py-3"><a href="https://maxiqueen-os-campa-a1.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">maxiqueen-os-campa-a1.vercel.app/</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">Mapa Perfeccionado — Ecosistema Maxiqueen OS<br>v0.9</td>
+        <td class="px-4 py-3 text-red-400/80">https://maxiqueen-os.vercel.app/Cloudos.html</td>
+        <td class="px-4 py-3 text-emerald-400">no lee documentos</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-amber-500/10 border-amber-500/30 text-amber-300 text-[11px] mono">no lee imágenes</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">🚀 Lo que SÍ SE PUEDE VENDER (Atributos de Valor)<br>Módulo Privado de Campañas Focalizadas: Diseñado específicamente par</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">maxiqueen-os.chat Private</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Ecosistema de Despliegue de Ofertas "Premium Showcase": Se comercializa como un </td>
+    </tr>
+    
+    <tr class="hover:bg-white/[0.02] transition">
+        <td class="px-4 py-3 text-center"><span class="mono text-amber-300 font-medium">14</span></td>
+        <td class="px-4 py-3"><a href="https://chat-maxiqueen-os-v1.vercel.app/" target="_blank" class="text-sky-300 hover:underline mono text-[12.5px]">https://chat-maxiqueen-os-v1.vercel.app/</a></td>
+        <td class="px-4 py-3 text-gray-200 font-medium">PAGINA-CREATOR IA</td>
+        <td class="px-4 py-3 text-red-400/80">No ejecuta modelos locales (depende 100% de APIs en la nube)</td>
+        <td class="px-4 py-3 text-emerald-400">lee imágenes Y DOCUMENTO</td>
+        <td class="px-4 py-3"><span class="inline-flex items-center px-2 py-0.5 rounded bg-emerald-500/10 border-emerald-500/20 text-emerald-300 text-[11px] mono">319 lineas ✅ Definido</span></td>
+        <td class="px-4 py-3 bg-amber-500/[0.02] text-gray-300">Esta solución hereda el potente motor del Quantum Nexus original (las 228 líneas optimizadas y el pool de APIs balancead</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-400">https://github.com/maxiqueen-os/Chat-MaxiqueenOS-V1</td>
+        <td class="px-4 py-3 mono text-[11px] text-gray-500">2026-07-04</td>
+        <td class="px-4 py-3 bg-emerald-950/20 text-emerald-300/90">Licencia "Creator OS" Todo en Uno: Modelo de suscripción mensual o anual para ne</td>
+    </tr>
+    
                         </tbody>
                     </table>
                 </div>
             </div>
         </main>
     </div>
-
     <section class="mq-chat minimized" id="mqChat">
         <div class="mq-chat-header">
             <div class="text-white font-bold text-sm flex items-center gap-2">
@@ -288,11 +299,11 @@
             <button type="submit" class="bg-amber-500 text-black px-3 py-1 rounded text-xs font-bold">Enviar</button>
         </form>
     </section>
-
     <button class="mq-bubble-launcher" id="chatLauncher" onclick="toggleChat()">💬</button>
-
     <script>
-        // FILTRO DE BÚSQUEDA DE LA TABLA MAESTRA
+        // ==========================================
+        // 1. FILTRO DE BÚSQUEDA DE LA TABLA MAESTRA
+        // ==========================================
         document.getElementById('search').addEventListener('input', e => {
             const q = e.target.value.toLowerCase();
             document.querySelectorAll('#nodesTable tr').forEach(r => {
@@ -300,121 +311,212 @@
             });
         });
 
-        // ENRUTAMIENTO DE API DE MAXIQUEEN OS CENTRAL
+        // ==========================================
+        // 2. CONFIGURACIÓN DEL ECOSISTEMA CHAT CORE
+        // ==========================================
         const API_URL = 'https://maxiqueen-os.vercel.app/api/chat';
         let chatOpen = false;
         let chatHistory = [];
         let currentUtterance = null;
         let globalVolume = 1.0;
+        let attachedFileBase64 = null;
+        let attachedFileName = null;
 
+        // Alternar visualización del chat widget
         function toggleChat() {
             const chat = document.getElementById('mqChat');
             const launcher = document.getElementById('chatLauncher');
             chatOpen = !chatOpen;
             chat.classList.toggle('minimized', !chatOpen);
             launcher.classList.toggle('hidden', chatOpen);
+            
+            // Auto-scroll al abrir
+            if (chatOpen) {
+                setTimeout(scrollChatToBottom, 100);
+            }
         }
 
+        // ==========================================
+        // 3. MOTOR DE TEXT-TO-SPEECH (VOZ INTERNA)
+        // ==========================================
+        function hablar(texto) {
+            if (!window.speechSynthesis) {
+                console.warn("El navegador no soporta síntesis de voz.");
+                return;
+            }
+            
+            // Detener cualquier lectura previa en curso
+            window.speechSynthesis.cancel();
+
+            // Limpiar etiquetas markdown comunes para una lectura fluida
+            const textoLimpio = texto.replace(/[*#`_\-]/g, '');
+
+            currentUtterance = new SpeechSynthesisUtterance(textoLimpio);
+            currentUtterance.volume = globalVolume;
+            currentUtterance.lang = 'es-ES'; // Forzar idioma español
+
+            // Buscar una voz en español si está disponible en el sistema
+            const voces = window.speechSynthesis.getVoices();
+            const vozEspañol = voces.find(v => v.lang.includes('es'));
+            if (vozEspañol) currentUtterance.voice = vozEspañol;
+
+            window.speechSynthesis.speak(currentUtterance);
+        }
+
+        // Panel de control de audio superior
         function controlVoz(accion) {
             if (!window.speechSynthesis) return;
-            if (accion === 'pause') window.speechSynthesis.pause();
-            if (accion === 'resume') window.speechSynthesis.resume();
-            if (accion === 'stop') window.speechSynthesis.cancel();
-            if (accion === 'volUp') { globalVolume = Math.min(globalVolume + 0.2, 1.0); if (currentUtterance) currentUtterance.volume = globalVolume; }
-            if (accion === 'volDown') { globalVolume = Math.max(globalVolume - 0.2, 0.0); if (currentUtterance) currentUtterance.volume = globalVolume; }
+
+            if (accion === 'pause') {
+                window.speechSynthesis.pause();
+            }
+            if (accion === 'resume') {
+                window.speechSynthesis.resume();
+            }
+            if (accion === 'stop') {
+                window.speechSynthesis.cancel();
+            }
+            if (accion === 'volUp') {
+                globalVolume = Math.min(1.0, globalVolume + 0.1);
+                if (currentUtterance) currentUtterance.volume = globalVolume;
+                console.log(`Volumen: ${Math.round(globalVolume * 10)}`);
+            }
+            if (accion === 'volDown') {
+                globalVolume = Math.max(0.0, globalVolume - 0.1);
+                if (currentUtterance) currentUtterance.volume = globalVolume;
+                console.log(`Volumen: ${Math.round(globalVolume * 10)}`);
+            }
         }
 
-        // CONTROLADOR DE ENVÍO DE FORMULARIO DE CHAT
+        // Cargar voces dinámicamente si el navegador tarda en inicializarlas
+        if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+        }
+
+        // ==========================================
+        // 4. GESTIÓN DE ARCHIVOS Y ADJUNTOS
+        // ==========================================
+        document.getElementById('mqFileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            attachedFileName = file.name;
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                // Extrae la cadena base64 pura o la URL de datos
+                attachedFileBase64 = event.target.result;
+                
+                // Mostrar feedback visual en el chat de que hay un archivo cargado
+                appendBubble(`📎 Archivo preparado para análisis: **${attachedFileName}**`, 'user');
+            };
+
+            // Detectar si es imagen o documento de texto/pdf para procesar adecuadamente
+            if (file.type.startsWith('image/')) {
+                reader.readAsDataURL(file);
+            } else {
+                reader.readAsText(file); // Ideal para analizar logs, json o txt directamente
+            }
+        });
+
+        // ==========================================
+        // 5. FLUJO DE RENDERIZADO Y ENVÍO DE DATOS
+        // ==========================================
+        function appendBubble(texto, clase) {
+            const container = document.getElementById('mqChatBody');
+            const bubble = document.createElement('div');
+            
+            // Asignación de estilos dinámicos de MaxiQueen OS
+            bubble.className = `mq-bubble ${clase === 'user' ? 'user' : ''}`;
+            bubble.innerHTML = texto.replace(/\n/g, '<br>'); // Respetar saltos de línea
+            
+            container.appendChild(bubble);
+            scrollChatToBottom();
+        }
+
+        function scrollChatToBottom() {
+            const container = document.getElementById('mqChatBody');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Manejador del Formulario de Envio
         document.getElementById('mqChatForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const input = document.getElementById('mqInput');
-            const fileInput = document.getElementById('mqFileInput');
-            const body = document.getElementById('mqChatBody');
             
-            const msg = input.value.trim();
-            if (!msg && !fileInput.files[0]) return;
+            const input = document.getElementById('mqInput');
+            const mensaje = input.value.trim();
+            
+            // Evitar envíos vacíos si no hay texto ni archivos
+            if (!mensaje && !attachedFileBase64) return;
 
-            // Inyectar visualmente mensaje del usuario en pantalla
-            const userDiv = document.createElement('div');
-            userDiv.className = 'mq-bubble user';
-            userDiv.innerHTML = msg || '<i>[Archivo adjuntado]</i>';
-            body.appendChild(userDiv);
-
-            // Resetear input del campo de texto y forzar scroll inmediato
-            input.value = '';
-            body.scrollTop = body.scrollHeight;
-
-            const files = [];
-            // Lógica de procesamiento de archivo limpia (Sin anidaciones rotas)
-            if (fileInput.files[0]) {
-                const file = fileInput.files[0];
-                const base64 = await new Promise((resolve) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result.split(',')[1]); // remueve cabecera metadata data:...
-                    reader.readAsDataURL(file);
-                });
-                files.push({ mimeType: file.type, base64Data: base64 });
-                fileInput.value = ''; // Limpieza controlada del input de archivo
+            // 1. Mostrar mensaje del usuario en pantalla
+            if (mensaje) {
+                appendBubble(mensaje, 'user');
             }
+            
+            // Limpiar el campo de entrada inmediatamente para mejorar UX
+            input.value = '';
+
+            // 2. Construir el Payload estructurado para tu Router Inteligente de Vercel
+            const payload = {
+                message: mensaje,
+                history: chatHistory,
+                file: attachedFileBase64,
+                fileName: attachedFileName
+            };
+
+            // Guardar en el historial local del cliente antes de enviar
+            chatHistory.push({ role: 'user', content: mensaje });
+
+            // Mostrar estado de carga (loading indicator)
+            const loadingId = 'mq-loading-' + Date.now();
+            const container = document.getElementById('mqChatBody');
+            const loadingBubble = document.createElement('div');
+            loadingBubble.className = 'mq-bubble text-amber-400/70 animate-pulse';
+            loadingBubble.id = loadingId;
+            loadingBubble.innerText = '⚡ Procesando en el Nexus Core...';
+            container.appendChild(loadingBubble);
+            scrollChatToBottom();
+
+            // Resetear archivo adjunto ya procesado
+            attachedFileBase64 = null;
+            attachedFileName = null;
+            document.getElementById('mqFileInput').value = '';
 
             try {
-                // Inyectar burbuja de carga simulada de SYNDICATE_CORE
-                const loadingDiv = document.createElement('div');
-                loadingDiv.className = 'mq-bubble text-amber-400/70 antialiased italic animate-pulse';
-                loadingDiv.id = 'mq-loading-bubble';
-                loadingDiv.innerText = 'Procesando consulta en nodo central...';
-                body.appendChild(loadingDiv);
-                body.scrollTop = body.scrollHeight;
-
-                const systemPrompt = `Eres el asistente del MAPA MAXIQUEEN OS v0.8. Conoces los 14 módulos completos con sus pitches, capacidades, clientes ideales y monetización. Responde en español, directo y técnico. Si preguntan por un ID, da su rol, qué hace, qué no hace, y a quién venderlo.`;
-                
+                // 3. Petición POST HTTP hacia tu API central en Vercel
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        message: msg || 'Analiza archivo', 
-                        systemPrompt, 
-                        files, 
-                        history: chatHistory // Envía el historial estructurado correctamente
-                    })
+                    body: JSON.stringify(payload)
                 });
 
-                // Remover burbuja de carga
-                document.getElementById('mq-loading-bubble').remove();
+                if (!response.ok) throw new Error(`HTTP Error Status: ${response.status}`);
 
-                if (!response.ok) {
-                    throw new Error(`Código HTTP de error: ${response.status}`);
-                }
-
-                const resData = await response.json();
-                const reply = resData.reply || resData.text || 'Sin respuesta válida de los nodos.';
-
-                // Inyectar respuesta limpia de la IA en pantalla
-                const aiDiv = document.createElement('div');
-                aiDiv.className = 'mq-bubble';
-                aiDiv.innerText = reply;
-                body.appendChild(aiDiv);
-
-                // ALINEACIÓN ESTRICTA CON TU BACKEND VERCEL COGNITIVE CORE:
-                // Se guardan los roles como 'user' y 'model' usando arreglos de 'parts' para evitar fallos de lectura
-                chatHistory.push({ role: 'user', parts: [{ text: msg || 'Analiza archivo' }] }); 
-                chatHistory.push({ role: 'model', parts: [{ text: reply }] });
-
-                // Mantener scroll abajo tras la actualización de datos
-                body.scrollTop = body.scrollHeight;
-
-            } catch (err) {
-                console.error("🚨 Error de conexión en Syndicate Core Front:", err);
-                const loader = document.getElementById('mq-loading-bubble');
-                if (loader) loader.remove();
+                const data = await response.json();
                 
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'mq-bubble text-red-400 border-red-500 bg-red-950/20 font-medium';
-                errorDiv.innerText = `Error crítico de comunicación: ${err.message}. Inténtalo de nuevo.`;
-                body.appendChild(errorDiv);
-                body.scrollTop = body.scrollHeight;
+                // Remover indicador de carga
+                document.getElementById(loadingId).remove();
+
+                // 4. Extraer respuesta de tu backend (Asumiendo estructura estándar { response: "texto" })
+                const respuestaIA = data.response || data.reply || JSON.stringify(data);
+
+                // 5. Renderizar respuesta en pantalla y ejecutar el habla automática
+                appendBubble(respuestaIA, 'ai');
+                hablar(respuestaIA);
+
+                // Sincronizar historial
+                chatHistory.push({ role: 'assistant', content: respuestaIA });
+
+            } catch (error) {
+                console.error("Fallo de conexión con el Core API:", error);
+                document.getElementById(loadingId).remove();
+                appendBubble(`❌ **Error de Sistema:** No se pudo conectar con el endpoint del ecosistema. Verifica el estado de tu app en Vercel o las políticas CORS de la API.`, 'ai');
             }
         });
     </script>
 </body>
 </html>
+
+
+

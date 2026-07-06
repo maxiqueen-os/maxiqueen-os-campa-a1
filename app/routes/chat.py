@@ -3,20 +3,23 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from datetime import datetime
 from pathlib import Path
+import json
 
 from app.services.ai_service import stream_response
 from app.ai.spider6_engine import spider6
 from app.core.memory import get_memory, save_message
-import json
 
-# 🧠 CARGA EL CEREBRO UNA SOLA VEZ AL INICIAR
+# 🔗 CONEXIÓN AL CEREBRO DE LA NUBE (MongoDB Atlas)
+from brain_engine import buscar_contexto_en_nube
+
+# 🧠 CARGA EL CEREBRO DE INTERFACES LOCALES AL INICIAR
 try:
     with open("maxiqueen_brain.json", "r", encoding="utf-8") as f:
         MAXIQUEEN_BRAIN = json.load(f)
-        print("✅ Cerebro MaxiQueen OS cargado en memoria.")
-except:
+        print("✅ Cerebro Local (Interfaces) cargado con éxito en memoria.")
+except Exception as e:
     MAXIQUEEN_BRAIN = []
-    print("⚠️ Cerebro no encontrado, operando sin conocimiento local.")
+    print(f"⚠️ Cerebro local no encontrado o vacío: {e}")
 
 router = APIRouter()
 
@@ -77,11 +80,26 @@ async def chat(req: ChatRequest):
                 yield result
                 return
 
+        # 🌐 1. CONSULTA EN TIEMPO REAL AL CEREBRO EN LA NUBE (112 Documentos de Atlas)
         try:
-            contexto = spider6(req.message, user_id)
+            conocimiento_nube = buscar_contexto_en_nube(req.message)
         except Exception as e:
-            contexto = f"Error spider6: {e}"
+            print("Error al consultar MongoDB Atlas:", e)
+            conocimiento_nube = "No se pudo recuperar el contexto de la nube."
 
+        # 📂 2. CONSULTA AL CEREBRO LOCAL (26 Archivos de Frontend e Interfaces)
+        conocimiento_local = ""
+        palabras_usuario = [w.lower() for w in req.message.split() if len(w) > 4]
+        
+        if isinstance(MAXIQUEEN_BRAIN, list):
+            for item in MAXIQUEEN_BRAIN:
+                # Soporte flexible para llaves de texto antiguas o nuevas ('contenido'/'texto')
+                texto_base = str(item.get("contenido", item.get("texto", ""))).lower()
+                if any(word in texto_base for word in palabras_usuario):
+                    archivo_nombre = item.get("fuente", item.get("archivo", "archivo_interfaz"))
+                    conocimiento_local += f"\n--- INTERFAZ LOCAL ({archivo_nombre}) ---\n{texto_base[:400]}...\n"
+
+        # 🕒 3. RECUPERACIÓN DE HISTORIAL DE MEMORIA
         try:
             history = get_memory(user_id)[-5:]
         except Exception as e:
@@ -92,30 +110,32 @@ async def chat(req: ChatRequest):
         intent = detect_intent(req.message)
         model = select_model(intent)
 
-        conocimiento_local = ""
-        palabras_usuario = [w.lower() for w in req.message.split() if len(w) > 4]
-        
-        for item in MAXIQUEEN_BRAIN:
-            texto_base = item.get("texto", "").lower()
-            if any(word in texto_base for word in palabras_usuario):
-                archivo_nombre = item.get("archivo", "archivo_maxiqueen")
-                conocimiento_local += f"\n--- RECUERDO ({archivo_nombre}) ---\n{texto_base[:300]}..."
+        # 🔍 4. CONTEXTO DINÁMICO (Spider6)
+        try:
+            contexto_dinamico = spider6(req.message, user_id)
+        except Exception as e:
+            contexto_dinamico = f"Error spider6: {e}"
 
+        # 🧠 PROMPT MAESTRO ULTRA EVOLUTION 2026 UNIFICADO
         full_prompt = f"""
-Eres el núcleo de inteligencia de MaxiQueen OS.
-Tu rol: Automatizar, optimizar, analizar y proponer acciones.
-Responde estructurado, sin relleno, enfocado en resultados.
+Eres el 'Cerebro Ultra Evolution 2026 MaxiQueen OS', el núcleo central de inteligencia del ecosistema.
+Tu rol es automatizar, optimizar y controlar la campaña basándote en la información técnica oficial.
+Responde de forma estructurada, directa y precisa al usuario.
 
-HISTORIAL:
+HISTORIAL DE CONVERSACIÓN:
 {history_text}
 
-CONTEXTO TÉCNICO (Cerebro Local):
+=== CONOCIMIENTO DE ARQUITECTURA (MongoDB Atlas - 112 Documentos) ===
+{conocimiento_nube}
+
+=== CONOCIMIENTO VISUAL Y DE INTERFAZ (Local - 26 Archivos) ===
 {conocimiento_local}
 
-CONTEXTO DINÁMICO (Spider6):
-{contexto}
+=== CONTEXTO DINÁMICO (Spider6) ===
+{contexto_dinamico}
+=====================================================================
 
-USUARIO:
+MENSAJE DEL USUARIO:
 {req.message}
 """
 
@@ -132,5 +152,4 @@ USUARIO:
         except Exception as e:
             print("Error save assistant:", e)
 
-    # AQUÍ ES DONDE ESTABA EL ERROR. Retorno limpio:
     return StreamingResponse(generator(), media_type="text/plain")

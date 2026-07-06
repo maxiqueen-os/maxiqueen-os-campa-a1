@@ -1,0 +1,60 @@
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from pathlib import Path
+from app.routes import chat, users
+from app.database import engine  # Asegúrate de tener esta función en tu módulo database.py
+from app.models import user
+from app.routes.image import router as image_router
+
+app = FastAPI(title="MAXIQUEEN OS API", version="1.0")
+
+# 🔥 3. IMPORTAR RUTAS DESPUÉS
+app.include_router(image_router)
+
+# 📂 Definir rutas base
+BASE_DIR = Path(__file__).resolve().parent        # carpeta app
+FRONTEND_DIR = BASE_DIR / Path(r"C:\MAXIQUEEN_OS\ACTIVE_SYSTEM\02_backend_api")  # ruta absoluta a tu frontend
+STATIC_DIR = FRONTEND_DIR / "static"              # supongo que tu frontend tiene carpeta "static"
+
+print("🔥 BASE_DIR:", BASE_DIR)
+print("🔥 STATIC_DIR:", STATIC_DIR)
+print("🔥 FRONTEND_DIR:", FRONTEND_DIR)
+print("🔥 STATIC EXISTE:", STATIC_DIR.exists())
+
+
+# 🌐 Configurar CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# 🗄️ Crear tablas en la base de datos
+user.Base.metadata.create_all(bind=engine)
+
+# 📌 Rutas API
+app.include_router(users.router, prefix="/users", tags=["users"])
+app.include_router(chat.router, prefix="/chat", tags=["chat"])
+app.include_router(image_router, prefix="/image", tags=["image"])
+
+# 📁 Montar carpeta estática
+if STATIC_DIR.exists():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+else:
+    print("⚠️ Carpeta static no encontrada en FRONTEND_DIR")
+
+# 🏠 Ruta index
+@app.get("/chat")
+def read_index():
+    index_file = FRONTEND_DIR / "index.html"
+    if index_file.exists():
+        return FileResponse(index_file)
+    return {"error": "index.html no encontrado"}
+
+# Montar archivos estáticos
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+

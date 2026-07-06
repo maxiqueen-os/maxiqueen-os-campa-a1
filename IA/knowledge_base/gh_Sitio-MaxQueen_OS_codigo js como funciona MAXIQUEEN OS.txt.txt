@@ -1,0 +1,8 @@
+{
+  "faq": [
+    {
+      "keyword": ["precio", "costo", "valor"],
+      "response": "..."
+    }
+  ]
+}

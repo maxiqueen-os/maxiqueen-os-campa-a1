@@ -16,7 +16,7 @@ from pydantic import BaseModel
 # 2. Imports de tus módulos (esto asume que app/database.py, app/models/user.py etc existen)
 from app.database import get_db, engine
 from app.models import user as user_model
-from app.routes import users, chat, rpg
+from app.routes import users, chat
 
 # 3. Inicialización
 app = FastAPI()
@@ -71,3 +71,22 @@ def add_xp(data: XPRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(user_db)
     return {"user_id": user_db.id, "level": user_db.level, "xp": user_db.xp}
+
+# 10. Conexión del Cerebro Automatizado de MaxiQueen OS
+from brain_engine import orquestar_prompt_cerebro_ultra  # Asegúrate de tener esta función en tu brain_engine
+
+class ChatWebRequest(BaseModel):
+    mensaje: str
+
+@app.post("/chat-automatizado")
+def chat_automatizado(data: ChatWebRequest):
+    try:
+        # Extrae la información relevante de tus 112 documentos en Atlas + interfaces
+        contexto_sistema = orquestar_prompt_cerebro_ultra(data.mensaje)
+        
+        # Aquí llamas al modelo de IA que uses (Ollama, OpenAI, etc.) pasándole el 'contexto_sistema'
+        # respuesta = llamar_modelo_ia(contexto_sistema, data.mensaje)
+        
+        return {"respuesta": "Cerebro conectado con éxito. Aquí irá la respuesta de la IA."}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error en el Cerebro: {str(e)}")

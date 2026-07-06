@@ -1,0 +1,16 @@
+# IA MAXIQUEEN OS
+
+Función:
+- Guiar decisiones
+- Estructurar ideas
+- Automatizar procesos
+
+Entrada:
+- Idea
+- Objetivo
+- Recursos
+
+Salida:
+- Plan
+- Acción
+- Monetización

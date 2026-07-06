@@ -1,0 +1,30 @@
+maxiqueen-os/
+│
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   │
+│   │   ├── core/
+│   │   │   └── config.py
+│   │   │
+│   │   ├── api/
+│   │   │   └── chat.py
+│   │   │
+│   │   ├── services/
+│   │   │   ├── llm_service.py
+│   │   │   ├── memory_service.py
+│   │   │   ├── scoring_service.py
+│   │   │   └── orchestrator.py
+│   │   │
+│   │   ├── models/
+│   │   │   ├── user.py
+│   │   │   ├── conversation.py
+│   │   │   └── profile.py
+│   │   │
+│   │   └── utils/
+│   │       └── prompt_builder.py
+│   │
+│   ├── requirements.txt
+│   └── .env
+│
+└── README.md

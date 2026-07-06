@@ -1,0 +1,54 @@
+
+06MarzoBackend_FastAPI
+📈 Estado actual del sistema
+Componente	Estado
+Servidor	✅
+DB SQLite	✅
+Tabla users	✅
+Registro	✅
+Validación duplicados	✅
+Hash sin bcrypt	✅
+
+Tu backend ya está estable.
+
+Backend_FastAPI
+│
+├── app
+│
+│   ├── routes
+│   │
+│   │   chat.py
+│   │   users.py
+│
+│   ├── models
+│   │
+│   │   user.py
+│   │   conversation.py
+│   │   customer_profile.py
+│
+│   ├── utils
+│
+│   │   ai_engine.py
+│   │   memory.py
+│   │   rag_engine.py
+│   │   vector_store.py
+│
+│   ├── database.py
+│
+├── IA
+│
+│   ├── knowledge_base
+│   │
+│   │   site_info.json
+│   │   products.json
+│   │   faq.json
+│
+│   ├── personality
+│   │
+│   │   public_ai.txt
+│   │   sales_ai.txt
+│   │   private_ai.txt
+│
+├── vector_db
+│
+│   chroma_store

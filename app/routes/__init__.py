@@ -1,1 +1,1 @@
-from . import users, chat
+from . import users, chat, rpg

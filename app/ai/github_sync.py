@@ -3,7 +3,7 @@ import base64
 import requests
 from pathlib import Path
 
-# --- FUNCIÓN RÁPIDA PARA CARGAR EL .ENV SIN LIBRERÍAS EXTERNAS ---
+# --- FUNCIÓN RÁPIDA PARA CARGAR EL .ENV ---
 def load_env():
     env_path = Path(".env")
     if env_path.exists():
@@ -12,16 +12,15 @@ def load_env():
                 line = line.strip()
                 if line and not line.startswith("#") and "=" in line:
                     key, val = line.split("=", 1)
-                    # Quita espacios y comillas si existen
                     os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
-# Cargar las variables de entorno antes de configurar lo demás
+# Cargar las variables de entorno
 load_env()
 
 # Configuración de rutas basada en tu estructura
 BASE_DIR = Path("IA/knowledge_base")
-GITHUB_USER = "MAXIQUEEN_OS"
-# Obtiene el token seguro desde el .env
+# CORREGIDO: Nombre exacto del perfil en GitHub para evitar el 404
+GITHUB_USER = "maxiqueen-os"
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN") 
 
 def save_to_knowledge(filename, content):
@@ -43,12 +42,10 @@ def get_repo_files(repo_name, headers):
         return
 
     files = res.json()
-    # Asegura que la respuesta sea una lista de archivos
     if isinstance(files, list):
         for file in files:
             if file["type"] == "file":
                 name = file["name"]
-                # Extensiones permitidas para tu base de conocimiento
                 if name.endswith((".md", ".py", ".js", ".txt", ".json")):
                     try:
                         raw = requests.get(file["download_url"], headers=headers).text
@@ -59,7 +56,12 @@ def get_repo_files(repo_name, headers):
 def sync_github_repos():
     """Descarga archivos README y código principal de tus repositorios."""
     url = f"https://api.github.com/users/{GITHUB_USER}/repos"
-    headers = {"Authorization": f"token {GITHUB_TOKEN}"} if GITHUB_TOKEN else {}
+    
+    # Formato estándar Bearer/token recomendado por la API de GitHub
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json"
+    } if GITHUB_TOKEN else {}
     
     response = requests.get(url, headers=headers)
     if response.status_code != 200:
@@ -84,8 +86,7 @@ def sync_github_repos():
         # 2. Descargamos los archivos de código principales de la raíz
         get_repo_files(repo_name, headers)
 
-# Ejecutar sincronización
 if __name__ == "__main__":
     if not GITHUB_TOKEN:
-        print("⚠️ Advertencia: No se detectó GITHUB_TOKEN en el .env. Podrías alcanzar el límite de la API.")
+        print("⚠️ Advertencia: No se detectó GITHUB_TOKEN en el .env.")
     sync_github_repos()

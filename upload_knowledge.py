@@ -1,37 +1,28 @@
 import os
 import json
 from pymongo import MongoClient
-from pymongo.server_api import ServerApi
 
-# 🔑 PON AQUÍ TU CADENA DE CONEXIÓN REAL DE MONGODB ATLAS
-MONGODB_URI = "mongodb+srv://cesar_admin:MiClaveSegura123@cluster0.abcde.mongodb.net/maxiqueen_db?retryWrites=true&w=majority"
+# 📂 Ruta exacta donde están tus archivos sincronizados de GitHub
+RUTA_TAKEOUT = os.path.join(os.getcwd(), "IA", "knowledge_base")
 
-# 📂 Ruta exacta de la carpeta NotebookLM desde donde vas a jalar los datos originales
-RUTA_TAKEOUT = r"C:\Users\ASUS\Downloads\takeout-20260519T014745Z-001 (1)\Takeout\NotebookLM"
+# 💾 Archivo donde se guardará tu conocimiento consolidado
+ARCHIVO_SALIDA = "knowledge_base_final.json"
 
-def conectar_mongo():
-    try:
-        client = MongoClient(MONGODB_URI, server_api=ServerApi('1'))
-        client.admin.command('ping')
-        return client["maxiqueen_db"]
-    except Exception as e:
-        print(f"❌ Error crítico de conexión a MongoDB: {e}")
-        return None
+# 🔗 Configura tu URI real de Atlas (¡REEMPLAZA TU_CONTRASEÑA_REAL!)
+MONGO_URI = "mongodb+srv://Vercel-Admin-Maxi-Queen_OS:3125482523Max@maxi-queen-os.nh1tkn7.mongodb.net/?appName=Maxi-Queen-OS"
 
-def cargar_conocimiento_universal():
-    db = conectar_mongo()
-    if db is None:
-        return
-        
-    coleccion = db["ia_knowledge"]
-    
+def cargar_conocimiento_local():
     if not os.path.exists(RUTA_TAKEOUT):
         print(f"❌ No se encontró la carpeta de origen en: {RUTA_TAKEOUT}")
         return
 
-    print(f"⏳ Indexando archivos desde la carpeta Takeout hacia tu ubicación actual en la nube de Atlas...\n")
+    print(f"⏳ Indexando archivos localmente hacia {ARCHIVO_SALIDA}...\n")
     
+    # Aquí acumularemos todo el conocimiento
+    base_de_conocimiento = []
     contador = 0
+
+    # 1. CICLO PARA PROCESAR LOS 112 ARCHIVOS LOCALES
     for nombre_archivo in os.listdir(RUTA_TAKEOUT):
         ruta_completa = os.path.join(RUTA_TAKEOUT, nombre_archivo)
         
@@ -41,44 +32,82 @@ def cargar_conocimiento_universal():
         ext = nombre_archivo.lower().split('.')[-1]
         
         try:
-            # 1. Si el archivo es un JSON (Estructuras de Hotmart, Takeout, etc.)
+            # A. Procesamiento de archivos JSON
             if ext == 'json':
                 with open(ruta_completa, 'r', encoding='utf-8') as f:
-                    contenido_json = json.load(f)
-                
-                if isinstance(contenido_json, list):
-                    for idx, elemento in enumerate(contenido_json):
-                        if isinstance(elemento, dict):
-                            elemento["tipo"] = "documento_estructurado"
-                            elemento["fuente"] = f"notebooklm_{nombre_archivo}_part_{idx}"
-                            coleccion.update_one({"fuente": elemento["fuente"]}, {"$set": elemento}, upsert=True)
-                elif isinstance(contenido_json, dict):
-                    contenido_json["tipo"] = "documento_estructurado"
-                    contenido_json["fuente"] = f"notebooklm_{nombre_archivo}"
-                    coleccion.update_one({"fuente": f"notebooklm_{nombre_archivo}"}, {"$set": contenido_json}, upsert=True)
-                
+                    data = json.load(f)
+                    # Agregamos metadatos de origen
+                    if isinstance(data, list):
+                        for item in data:
+                            if isinstance(item, dict):
+                                item["tipo"] = "documento_estructurado"
+                                item["fuente"] = nombre_archivo
+                                base_de_conocimiento.append(item)
+                    elif isinstance(data, dict):
+                        data["tipo"] = "documento_estructurado"
+                        data["fuente"] = nombre_archivo
+                        base_de_conocimiento.append(data)
                 contador += 1
-                print(f"✅ JSON indexado con éxito: {nombre_archivo}")
+                print(f"✅ Procesado JSON: {nombre_archivo}")
 
-            # 2. Para cualquier otra clase de documento (.txt, .md, transcripciones, etc.) sin cortar nada
+            # B. Procesamiento de archivos de texto (.txt, .md, etc)
             else:
                 with open(ruta_completa, 'r', encoding='utf-8', errors='ignore') as f:
-                    texto_plano = f.read()
+                    texto = f.read()
                 
-                if texto_plano.strip():
-                    documento = {
+                if texto.strip():
+                    doc = {
                         "tipo": "documento_soporte",
-                        "fuente": f"notebooklm_{nombre_archivo}",
-                        "contenido": texto_plano
+                        "fuente": nombre_archivo,
+                        "contenido": texto
                     }
-                    coleccion.update_one({"fuente": documento["fuente"]}, {"$set": documento}, upsert=True)
+                    base_de_conocimiento.append(doc)
                     contador += 1
-                    print(f"📄 Documento de texto indexado completo [{contador}]: {nombre_archivo}")
+                    print(f"📄 Procesado Documento [{contador}]: {nombre_archivo}")
 
         except Exception as e:
-            print(f"❌ Error al procesar el archivo {nombre_archivo}: {e}")
+            print(f"❌ Error al procesar {nombre_archivo}: {e}")
 
-    print(f"\n🚀 ¡Ecosistema cargado! Se subieron {contador} fuentes completas a MongoDB desde tu ubicación actual.")
+    # 2. GUARDAR TODO EN UN SOLO ARCHIVO JSON LOCAL
+    with open(ARCHIVO_SALIDA, 'w', encoding='utf-8') as f:
+        json.dump(base_de_conocimiento, f, ensure_ascii=False, indent=4)
+    
+    print(f"\n🚀 ¡Éxito! Se consolidó el conocimiento en: {ARCHIVO_SALIDA}")
+    print(f"Total de fuentes indexadas: {contador}")
+
+    # =====================================================================
+    # 3. 🌐 SUBIDA A MONGODB ATLAS (Se ejecuta al finalizar la consolidación)
+    # =====================================================================
+    try:
+        print("\n⏳ Conectando a MongoDB Atlas para cargar el conocimiento...")
+        client = MongoClient(MONGO_URI)
+        
+        # Selecciona la base de datos y la colección destino
+        db = client["Maxi-Queen-OS"]
+        coleccion = db["knowledge_base"]
+        
+        # Cargar los datos desde el archivo que se acaba de crear
+        with open(ARCHIVO_SALIDA, "r", encoding="utf-8") as f:
+            datos_conocimiento = json.load(f)
+            
+        # Validar la estructura e insertar los documentos en la nube
+        if isinstance(datos_conocimiento, list) and len(datos_conocimiento) > 0:
+            print("🧹 Limpiando registros antiguos en la colección...")
+            coleccion.delete_many({}) 
+            
+            print("📤 Subiendo el nuevo conocimiento consolidado...")
+            resultado = coleccion.insert_many(datos_conocimiento)
+            print(f"✅ ¡Conocimiento cargado en la nube! Se subieron {len(resultado.inserted_ids)} registros con éxito.")
+        elif isinstance(datos_conocimiento, dict):
+            print("🧹 Limpiando registros antiguos en la colección...")
+            coleccion.delete_many({})
+            resultado = coleccion.insert_one(datos_conocimiento)
+            print("✅ ¡Conocimiento cargado en la nube! Se subió la estructura correctamente.")
+        else:
+            print("⚠️ El archivo JSON está vacío o no tiene un formato válido para MongoDB.")
+
+    except Exception as e:
+        print(f"❌ Error al subir los datos a MongoDB Atlas: {e}")
 
 if __name__ == "__main__":
-    cargar_conocimiento_universal()
+    cargar_conocimiento_local()

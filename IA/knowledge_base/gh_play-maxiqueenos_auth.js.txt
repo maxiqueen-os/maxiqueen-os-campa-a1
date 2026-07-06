@@ -1,0 +1,66 @@
+// ================= AUTH =================
+
+async function register() {
+  try {
+    const response = await fetch("http://127.0.0.1:8000/users/register", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        email: document.getElementById("reg_email").value,
+        password: document.getElementById("reg_password").value
+      })
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (response.ok) {
+      localStorage.setItem("token", data.access_token);
+      location.reload();
+    } else {
+      alert("Error: " + (data.detail || "Error inesperado"));
+    }
+
+  } catch (error) {
+    alert("No se pudo conectar al servidor.");
+  }
+}
+
+async function login() {
+  try {
+  const response = await fetch("http://127.0.0.1:8000/users/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: document.getElementById("reg_email").value,
+      password: document.getElementById("reg_password").value
+    })
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (response.ok) {
+    localStorage.setItem("token", data.access_token);
+    location.reload();
+  } else {
+    alert("Error: " + (data.detail || "Error inesperado"));
+    }
+
+  } catch (error) {
+    alert("No se pudo conectar al servidor.");
+  }
+}
+
+function logout() {
+  localStorage.removeItem("token");
+  location.reload();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    document.getElementById("registerBox")?.classList.add("hidden");
+    document.getElementById("loginBox")?.classList.add("hidden");
+    document.getElementById("chatBox")?.classList.remove("hidden");
+  }
+});
